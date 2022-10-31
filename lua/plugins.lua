@@ -20,7 +20,7 @@ packer.startup(function(use)
 	use ({ "williamboman/mason.nvim",
 	requires = {
 		"williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig"
+        "neovim/nvim-lspconfig"
     },
 	config= get_config("lsp")
 		})
@@ -93,6 +93,46 @@ use {
   requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   config = get_config("lualine")
 }
+
+-- Lua
+use {
+  "folke/which-key.nvim",
+  config = function()
+    require("which-key").setup {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  end
+}
+
+use { "ggandor/leap.nvim", config=get_config("leap")}
+
+-- Packer
+use({
+  "folke/noice.nvim",
+  config = function()
+    require("noice").setup()
+  end,
+  requires = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    "MunifTanjim/nui.nvim",
+    -- OPTIONAL:
+    --   `nvim-notify` is only needed, if you want to use the notification view.
+    --   If not available, we use `mini` as the fallback
+    "rcarriga/nvim-notify",
+    }
+})
+
+use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+})
 
 
 -- init.lua
